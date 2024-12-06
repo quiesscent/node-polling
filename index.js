@@ -10,7 +10,9 @@ app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
 app.get('/', async (req, res) => {
+
     res.json({ message: "Welcome to Polling site" })
+    
 });
 
 
