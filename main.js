@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+
 // Test database connection
 app.get('/test-db', async (req, res) => {
     try {
@@ -18,6 +19,7 @@ app.get('/test-db', async (req, res) => {
     }
 });
 
+
 // Fetch all students 
 app.get('/students', async (req, res) => {
     try {
@@ -28,6 +30,7 @@ app.get('/students', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch students' });
     }
 });
+
 
 // Add a student 
 app.post('/students', async (req, res) => {
