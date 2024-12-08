@@ -21,6 +21,7 @@ model Student {
   password String
   campus   String
   vote     Vote[]
+  
 }
 
 model Candidate {
@@ -41,6 +42,5 @@ model Vote {
   candidateId Int
   student     Student   @relation(fields: [studentId], references: [id])
   candidate   Candidate @relation(fields: [candidateId], references: [id])
-
   @@unique([studentId]) // A student can only vote once
 }

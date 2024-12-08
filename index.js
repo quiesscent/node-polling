@@ -130,7 +130,7 @@ app.get('/students', async (req, res) => {
 });
 
 // Get all candidates
-app.get('/students', async (req, res) => {
+app.get('/candidates', async (req, res) => {
     try {
         const candidates = await prisma.candidate.findMany();
         res.status(200).json(candidates);
@@ -173,21 +173,25 @@ app.get('/results', async (req, res) => {
     try {
         const results = await prisma.candidate.findMany({
             include: {
-                votes: true,
+                vote: true,
             },
         });
-        const formattedResults = results.map((candidate) => ({
-            id: candidate.id,
-            name: candidate.name,
-            voteCount: candidate.votes.length,
-        }));
-        res.status(200).json(formattedResults);
+
+        // const formattedResults = results.map((candidate) => ({
+        //     id: candidate.id,
+        //     name: candidate.name,
+        //     voteCount: candidate.vote.length,
+        // }));
+
+        res.status(200).json(results);
 
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to fetch results' });
     }
 });
+
+
 
 // Get a student by ID
 app.get('/students/:id', async (req, res) => {
@@ -205,6 +209,7 @@ app.get('/students/:id', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
 
 // Update a student by ID
 app.put('/students/:id', async (req, res) => {

@@ -14,6 +14,7 @@ module.exports = {
     query: (text, params) => pool.query(text, params),
 };
 
+
 const createTables = async () => {
     try {
         // Create students table
